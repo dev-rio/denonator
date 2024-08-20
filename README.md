@@ -1,21 +1,29 @@
 # Akinator
 
-Akinator is a Node.js library for interacting with the Akinator web game. It allows you to play the Akinator game programmatically, answering questions and guessing the character.
+Akinator is a Deno library for interacting with the Akinator web game. It allows you to play the Akinator game programmatically, answering questions and guessing the character.
 
 ## Installation
 
-To install the Akinator library, use [npm](https://www.npmjs.com/package/akinatorjs):
+To use the Akinator library in Deno, you don't need to install anything using a package manager. Instead, you can directly import the library from the URL where it is hosted.
 
-```bash
-npm install akinatorjs
+### Example Import:
+
+```typescript
+import {
+    Akinator,
+    AkinatorLanguage as Language
+} from "https://deno.land/x/denonator/mod.ts";
 ```
 
 ## Usage
 
 To use the Akinator library, import the `Akinator` class and create an instance:
 
-```javascript
-import { Akinator, Language } from "akinator";
+```typescript
+import {
+    Akinator,
+    AkinatorLanguage as Language
+} from "https://deno.land/x/denonator/mod.ts";
 
 const akinator = new Akinator(Language.English);
 ```
@@ -24,7 +32,7 @@ const akinator = new Akinator(Language.English);
 
 To start a new game, call the `startGame()` method:
 
-```javascript
+```typescript
 const { ok, result } = await akinator.startGame();
 if (ok) {
     console.log(`New game started! Current question: ${result.question}`);
@@ -37,7 +45,7 @@ if (ok) {
 
 To answer a question, use the `answerQuestion()` method:
 
-```javascript
+```typescript
 const { ok, result } = await akinator.answerQuestion("y", akinator.id);
 if (ok) {
     console.log(
@@ -54,7 +62,7 @@ The `answerQuestion()` method takes the answer as the first argument and the gam
 
 To go back to the previous question, use the `back()` method:
 
-```javascript
+```typescript
 const { ok, result } = await akinator.back(akinator.id);
 if (ok) {
     console.log(
@@ -69,7 +77,7 @@ if (ok) {
 
 When the Akinator game is finished, the `answerQuestion()` method will return the result:
 
-```javascript
+```typescript
 const { ok, result } = await akinator.answerQuestion("y", akinator.id);
 if (ok && result.photo) {
     console.log(`Akinator guessed: ${result.name}`);
